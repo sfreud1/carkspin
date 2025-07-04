@@ -10,12 +10,8 @@ struct FriendsView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                // Daha modern gradient
                 LinearGradient(
-                    gradient: Gradient(colors: [
-                        Color(red: 0.2, green: 0.6, blue: 1.0),
-                        Color(red: 0.6, green: 0.3, blue: 1.0)
-                    ]),
+                    gradient: Gradient(colors: [Color.indigo, Color.teal]),
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
                 )
@@ -35,9 +31,8 @@ struct FriendsView: View {
                             Spacer()
                             
                             Text("Arkadaş Ara")
-                                .font(.title2)
-                                .fontWeight(.bold)
-                                .foregroundColor(.white)
+                                .font(.system(size: 24, weight: .heavy, design: .rounded))
+                                .foregroundStyle(.white)
                             
                             Spacer()
                             
@@ -53,9 +48,9 @@ struct FriendsView: View {
                             Image(systemName: "magnifyingglass")
                                 .foregroundColor(.gray)
                                 .font(.system(size: 18))
-                            
+
                             TextField("Kullanıcı adı ara...", text: $searchText)
-                                .font(.body)
+                                .font(.system(size: 16, weight: .medium, design: .rounded))
                                 .foregroundColor(.primary)
                                 .onSubmit {
                                     searchUsers()
@@ -93,8 +88,8 @@ struct FriendsView: View {
                                 .scaleEffect(1.5)
                                 .tint(.white)
                             Text("Aranıyor...")
-                                .font(.headline)
-                                .foregroundColor(.white.opacity(0.8))
+                                .font(.system(size: 16, weight: .medium, design: .rounded))
+                                .foregroundStyle(.white.opacity(0.8))
                         }
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     } else if searchResults.isEmpty && !searchText.isEmpty {
@@ -104,13 +99,12 @@ struct FriendsView: View {
                                 .foregroundColor(.white.opacity(0.6))
                             
                             Text("Kullanıcı bulunamadı")
-                                .font(.title3)
-                                .fontWeight(.semibold)
-                                .foregroundColor(.white)
+                                .font(.system(size: 20, weight: .heavy, design: .rounded))
+                                .foregroundStyle(.white)
                             
                             Text("'\(searchText)' ile eşleşen kullanıcı bulunamadı")
-                                .font(.subheadline)
-                                .foregroundColor(.white.opacity(0.7))
+                                .font(.system(size: 14, weight: .medium, design: .rounded))
+                                .foregroundStyle(.white.opacity(0.8))
                                 .multilineTextAlignment(.center)
                         }
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -123,13 +117,12 @@ struct FriendsView: View {
                             
                             VStack(spacing: 10) {
                                 Text("Arkadaş Keşfet")
-                                    .font(.title2)
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.white)
+                                    .font(.system(size: 22, weight: .heavy, design: .rounded))
+                                    .foregroundStyle(.white)
                                 
                                 Text("Kullanıcı adı ile arkadaşlarını bul\nve birlikte çark çevirin!")
-                                    .font(.body)
-                                    .foregroundColor(.white.opacity(0.8))
+                                    .font(.system(size: 14, weight: .medium, design: .rounded))
+                                    .foregroundStyle(.white.opacity(0.85))
                                     .multilineTextAlignment(.center)
                                     .lineSpacing(4)
                             }
@@ -188,7 +181,7 @@ struct UserCard: View {
                 ZStack {
                     Circle()
                         .fill(LinearGradient(
-                            gradient: Gradient(colors: [.blue.opacity(0.3), .purple.opacity(0.3)]),
+                            gradient: Gradient(colors: [.indigo.opacity(0.3), .teal.opacity(0.3)]),
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         ))
@@ -239,20 +232,22 @@ struct UserCard: View {
                 HStack(spacing: 8) {
                     Image(systemName: isInviteSent ? "checkmark.circle.fill" : "paperplane.fill")
                         .font(.system(size: 16))
-                    
+
                     Text(isInviteSent ? "Gönderildi" : "Çark İsteği")
-                        .font(.system(size: 14, weight: .semibold))
+                        .font(.system(size: 14, weight: .bold, design: .rounded))
                 }
-                .foregroundColor(isInviteSent ? .white : .white)
+                .foregroundColor(.white)
                 .padding(.horizontal, 16)
                 .padding(.vertical, 10)
                 .background(
-                    isInviteSent ? 
-                    LinearGradient(gradient: Gradient(colors: [.green, .green.opacity(0.8)]), startPoint: .leading, endPoint: .trailing) :
-                    LinearGradient(gradient: Gradient(colors: [.blue, .purple]), startPoint: .leading, endPoint: .trailing)
+                    LinearGradient(
+                        colors: isInviteSent ? [Color.green, Color.green.opacity(0.8)] : [Color.pink, Color.orange],
+                        startPoint: .leading,
+                        endPoint: .trailing
+                    )
                 )
                 .clipShape(Capsule())
-                .shadow(color: isInviteSent ? .green.opacity(0.3) : .blue.opacity(0.3), radius: 8, x: 0, y: 4)
+                .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2)
             }
             .disabled(isInviteSent)
             .scaleEffect(isInviteSent ? 0.95 : 1.0)
