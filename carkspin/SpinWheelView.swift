@@ -20,9 +20,9 @@ struct SpinWheelView: View {
                 // Premium gradient arka plan
                 RadialGradient(
                     gradient: Gradient(colors: [
-                        Color(red: 0.1, green: 0.1, blue: 0.2),
-                        Color(red: 0.2, green: 0.1, blue: 0.3),
-                        Color(red: 0.1, green: 0.0, blue: 0.2)
+                        Color.black,
+                        Color.green.opacity(0.8),
+                        Color.yellow.opacity(0.3)
                     ]),
                     center: .center,
                     startRadius: 100,
@@ -33,7 +33,7 @@ struct SpinWheelView: View {
                 // Arka plan parçacıkları
                 ForEach(0..<20, id: \.self) { _ in
                     Circle()
-                        .fill(.white.opacity(0.1))
+                        .fill(Color.yellow.opacity(0.1))
                         .frame(width: Double.random(in: 2...6))
                         .position(
                             x: Double.random(in: 0...geometry.size.width),
@@ -51,7 +51,7 @@ struct SpinWheelView: View {
                                 .font(.system(size: 28, weight: .black, design: .rounded))
                                 .foregroundStyle(
                                     LinearGradient(
-                                        colors: [.white, .blue.opacity(0.8)],
+                                        colors: [Color.green, Color.yellow],
                                         startPoint: .topLeading,
                                         endPoint: .bottomTrailing
                                     )
@@ -59,7 +59,7 @@ struct SpinWheelView: View {
                             
                             Text("Şansını dene!")
                                 .font(.caption)
-                                .foregroundColor(.white.opacity(0.7))
+                                .foregroundColor(.yellow.opacity(0.7))
                         }
                         
                         Spacer()
@@ -73,7 +73,7 @@ struct SpinWheelView: View {
                                         Circle()
                                             .stroke(
                                                 LinearGradient(
-                                                    colors: [.blue.opacity(0.5), .purple.opacity(0.5)],
+                                                    colors: [Color.green.opacity(0.5), Color.yellow.opacity(0.5)],
                                                     startPoint: .topLeading,
                                                     endPoint: .bottomTrailing
                                                 ),
@@ -83,7 +83,7 @@ struct SpinWheelView: View {
                                 
                                 Image(systemName: "person.2.fill")
                                     .font(.system(size: 18, weight: .semibold))
-                                    .foregroundColor(.white)
+                                    .foregroundColor(.yellow)
                             }
                         }
                     }
@@ -98,7 +98,7 @@ struct SpinWheelView: View {
                         Circle()
                             .fill(
                                 RadialGradient(
-                                    colors: [.blue.opacity(0.3), .purple.opacity(0.2), .clear],
+                                    colors: [Color.green.opacity(0.3), Color.yellow.opacity(0.2), .clear],
                                     center: .center,
                                     startRadius: 50,
                                     endRadius: 200
@@ -115,14 +115,14 @@ struct SpinWheelView: View {
                             Circle()
                                 .stroke(
                                     LinearGradient(
-                                        colors: [.white.opacity(0.8), .blue.opacity(0.6)],
+                                        colors: [Color.green.opacity(0.8), Color.yellow.opacity(0.6)],
                                         startPoint: .topLeading,
                                         endPoint: .bottomTrailing
                                     ),
                                     lineWidth: 8
                                 )
                                 .frame(width: 310, height: 310)
-                                .shadow(color: .white.opacity(0.3), radius: 5, x: 0, y: 0)
+                                .shadow(color: Color.yellow.opacity(0.3), radius: 5, x: 0, y: 0)
                             
                             // Çark segmentleri
                             ForEach(0..<options.count, id: \.self) { index in
@@ -140,7 +140,7 @@ struct SpinWheelView: View {
                                 Circle()
                                     .fill(
                                         RadialGradient(
-                                            colors: [.white, .gray.opacity(0.3)],
+                                            colors: [Color.yellow, Color.green.opacity(0.3)],
                                             center: .center,
                                             startRadius: 5,
                                             endRadius: 30
@@ -150,7 +150,7 @@ struct SpinWheelView: View {
                                     .shadow(color: .black.opacity(0.2), radius: 8, x: 0, y: 4)
                                 
                                 Circle()
-                                    .stroke(.white.opacity(0.5), lineWidth: 2)
+                                    .stroke(Color.yellow.opacity(0.5), lineWidth: 2)
                                     .frame(width: 45, height: 45)
                                 
                                 Text("SPIN")
@@ -171,7 +171,7 @@ struct SpinWheelView: View {
                                     Pointer()
                                         .fill(
                                             LinearGradient(
-                                                colors: [.white, .gray.opacity(0.8)],
+                                                colors: [Color.yellow, Color.green.opacity(0.8)],
                                                 startPoint: .top,
                                                 endPoint: .bottom
                                             )
@@ -201,9 +201,9 @@ struct SpinWheelView: View {
                                 RoundedRectangle(cornerRadius: 30)
                                     .fill(
                                         LinearGradient(
-                                            colors: isSpinning ? 
+                                            colors: isSpinning ?
                                                 [.gray.opacity(0.4), .gray.opacity(0.6)] :
-                                                [.orange.opacity(0.8), .red.opacity(0.9)],
+                                                [Color.pink.opacity(0.8), Color.orange.opacity(0.9)],
                                             startPoint: .topLeading,
                                             endPoint: .bottomTrailing
                                         )
@@ -216,9 +216,9 @@ struct SpinWheelView: View {
                                 RoundedRectangle(cornerRadius: 30)
                                     .fill(
                                         LinearGradient(
-                                            colors: isSpinning ? 
+                                            colors: isSpinning ?
                                                 [.gray.opacity(0.6), .gray.opacity(0.8)] :
-                                                [.orange, .red],
+                                                [Color.pink, Color.orange],
                                             startPoint: .topLeading,
                                             endPoint: .bottomTrailing
                                         )
@@ -226,23 +226,23 @@ struct SpinWheelView: View {
                                     .frame(height: 65)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 30)
-                                            .stroke(.white.opacity(0.3), lineWidth: 1)
+                                            .stroke(Color.yellow.opacity(0.3), lineWidth: 1)
                                     )
                                 
                                 HStack(spacing: 12) {
                                     if isSpinning {
                                         ProgressView()
                                             .scaleEffect(0.9)
-                                            .tint(.white)
+                                            .tint(.yellow)
                                     } else {
                                         Image(systemName: "arrow.triangle.2.circlepath")
                                             .font(.title2)
-                                            .foregroundColor(.white)
+                                            .foregroundColor(.yellow)
                                     }
                                     
                                     Text(isSpinning ? "ÇARK DÖNÜYOR..." : "ÇARKI ÇEVİR!")
                                         .font(.system(size: 18, weight: .black, design: .rounded))
-                                        .foregroundColor(.white)
+                                        .foregroundColor(.yellow)
                                 }
                             }
                         }
@@ -257,14 +257,14 @@ struct SpinWheelView: View {
                                 Text("Arkadaşlarla Oyna")
                                     .font(.system(size: 16, weight: .semibold))
                             }
-                            .foregroundColor(.white)
+                            .foregroundColor(.yellow)
                             .frame(maxWidth: .infinity)
                             .frame(height: 50)
                             .background(.ultraThinMaterial)
                             .clipShape(RoundedRectangle(cornerRadius: 25))
                             .overlay(
                                 RoundedRectangle(cornerRadius: 25)
-                                    .stroke(.white.opacity(0.3), lineWidth: 1)
+                                    .stroke(Color.yellow.opacity(0.3), lineWidth: 1)
                             )
                         }
                     }
@@ -348,7 +348,7 @@ struct ProfessionalWheelSegment: View {
                 .overlay(
                     Circle()
                         .trim(from: startAngle / 360, to: endAngle / 360)
-                        .stroke(.white.opacity(0.3), lineWidth: 2)
+                        .stroke(Color.yellow.opacity(0.3), lineWidth: 2)
                         .frame(width: 300, height: 300)
                 )
             
@@ -357,7 +357,7 @@ struct ProfessionalWheelSegment: View {
                 .trim(from: startAngle / 360, to: endAngle / 360)
                 .fill(
                     LinearGradient(
-                        colors: [.black.opacity(0.1), .clear, .white.opacity(0.2)],
+                        colors: [.black.opacity(0.1), .clear, Color.yellow.opacity(0.2)],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )
@@ -369,7 +369,7 @@ struct ProfessionalWheelSegment: View {
                 .font(.system(size: 24, weight: .black, design: .rounded))
                 .foregroundStyle(
                     LinearGradient(
-                        colors: [.white, .white.opacity(0.8)],
+                        colors: [Color.yellow, Color.green.opacity(0.8)],
                         startPoint: .top,
                         endPoint: .bottom
                     )
@@ -434,7 +434,7 @@ struct ResultView: View {
                     VStack(spacing: 20) {
                         Text("Sonuç Açıklandı!")
                             .font(.system(size: 24, weight: .bold, design: .rounded))
-                            .foregroundColor(.white.opacity(0.9))
+                            .foregroundColor(.yellow.opacity(0.9))
                         
                         // Sonuç kartı
                         ZStack {
@@ -456,7 +456,7 @@ struct ResultView: View {
                                 .font(.system(size: 48, weight: .black, design: .rounded))
                                 .foregroundStyle(
                                     LinearGradient(
-                                        colors: [.white, .white.opacity(0.8)],
+                                        colors: [Color.yellow, Color.green.opacity(0.8)],
                                         startPoint: .top,
                                         endPoint: .bottom
                                     )
@@ -474,11 +474,11 @@ struct ResultView: View {
                             Text("Tamam")
                                 .font(.system(size: 18, weight: .bold, design: .rounded))
                         }
-                        .foregroundColor(.white)
+                        .foregroundColor(.yellow)
                         .frame(width: 150, height: 55)
                         .background(
                             LinearGradient(
-                                colors: [.blue, .purple],
+                                colors: [Color.green, Color.yellow],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -486,9 +486,9 @@ struct ResultView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 27))
                         .overlay(
                             RoundedRectangle(cornerRadius: 27)
-                                .stroke(.white.opacity(0.3), lineWidth: 1)
+                                .stroke(Color.yellow.opacity(0.3), lineWidth: 1)
                         )
-                        .shadow(color: .blue.opacity(0.3), radius: 15, x: 0, y: 8)
+                        .shadow(color: Color.yellow.opacity(0.3), radius: 15, x: 0, y: 8)
                     }
                 }
                 .transition(.scale.combined(with: .opacity))

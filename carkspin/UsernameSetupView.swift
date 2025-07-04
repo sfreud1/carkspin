@@ -8,9 +8,9 @@ struct UsernameSetupView: View {
     var body: some View {
         ZStack {
             LinearGradient(
-                gradient: Gradient(colors: [Color.blue.opacity(0.6), Color.purple.opacity(0.8)]),
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
+                gradient: Gradient(colors: [Color.black, Color.green.opacity(0.7)]),
+                startPoint: .top,
+                endPoint: .bottom
             )
             .ignoresSafeArea()
             
@@ -19,17 +19,16 @@ struct UsernameSetupView: View {
                 
                 VStack(spacing: 20) {
                     Image(systemName: "person.badge.plus")
-                        .font(.system(size: 80))
-                        .foregroundColor(.white)
-                    
+                        .font(.system(size: 80, weight: .black, design: .rounded))
+                        .foregroundStyle(.yellow)
+
                     Text("Kullanıcı Adın")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                    
+                        .font(.system(size: 34, weight: .heavy, design: .rounded))
+                        .foregroundColor(.yellow)
+
                     Text("Arkadaşlarının seni bulabilmesi için bir kullanıcı adı seç")
-                        .font(.body)
-                        .foregroundColor(.white.opacity(0.8))
+                        .font(.system(size: 16, weight: .medium, design: .rounded))
+                        .foregroundColor(.yellow.opacity(0.9))
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, 40)
                 }
@@ -58,13 +57,16 @@ struct UsernameSetupView: View {
                         userService.setUsername(username)
                     }) {
                         Text("Devam Et")
-                            .fontWeight(.semibold)
+                            .font(.system(size: 16, weight: .bold, design: .rounded))
                             .frame(maxWidth: .infinity)
-                            .frame(height: 50)
-                            .background(isValidUsername ? Color.white : Color.gray.opacity(0.5))
-                            .foregroundColor(isValidUsername ? .primary : .white)
-                            .cornerRadius(25)
-                            .shadow(radius: isValidUsername ? 10 : 0, x: 0, y: isValidUsername ? 5 : 0)
+                            .frame(height: 55)
+                            .background(
+                                LinearGradient(colors: [Color.green, Color.yellow], startPoint: .topLeading, endPoint: .bottomTrailing)
+                                    .opacity(isValidUsername ? 1 : 0.5)
+                            )
+                            .foregroundColor(.yellow)
+                            .clipShape(Capsule())
+                            .shadow(color: .black.opacity(isValidUsername ? 0.2 : 0), radius: 5, x: 0, y: 3)
                     }
                     .disabled(!isValidUsername || userService.isLoading)
                     .opacity(!isValidUsername || userService.isLoading ? 0.6 : 1.0)
@@ -72,7 +74,7 @@ struct UsernameSetupView: View {
                     if userService.isLoading {
                         ProgressView()
                             .scaleEffect(1.2)
-                            .tint(.white)
+                            .tint(.yellow)
                     }
                     
                     if let errorMessage = userService.errorMessage {

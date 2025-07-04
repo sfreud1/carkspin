@@ -10,14 +10,10 @@ struct FriendsView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                // Daha modern gradient
                 LinearGradient(
-                    gradient: Gradient(colors: [
-                        Color(red: 0.2, green: 0.6, blue: 1.0),
-                        Color(red: 0.6, green: 0.3, blue: 1.0)
-                    ]),
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
+                    gradient: Gradient(colors: [Color.black, Color.green.opacity(0.7)]),
+                    startPoint: .top,
+                    endPoint: .bottom
                 )
                 .ignoresSafeArea()
                 
@@ -28,16 +24,15 @@ struct FriendsView: View {
                             Button(action: { dismiss() }) {
                                 Image(systemName: "xmark.circle.fill")
                                     .font(.title2)
-                                    .foregroundColor(.white.opacity(0.8))
+                                    .foregroundColor(.yellow.opacity(0.9))
                                     .background(Circle().fill(.ultraThinMaterial))
                             }
                             
                             Spacer()
                             
                             Text("Arkadaş Ara")
-                                .font(.title2)
-                                .fontWeight(.bold)
-                                .foregroundColor(.white)
+                                .font(.system(size: 24, weight: .heavy, design: .rounded))
+                                .foregroundColor(.yellow)
                             
                             Spacer()
                             
@@ -53,9 +48,9 @@ struct FriendsView: View {
                             Image(systemName: "magnifyingglass")
                                 .foregroundColor(.gray)
                                 .font(.system(size: 18))
-                            
+
                             TextField("Kullanıcı adı ara...", text: $searchText)
-                                .font(.body)
+                                .font(.system(size: 16, weight: .medium, design: .rounded))
                                 .foregroundColor(.primary)
                                 .onSubmit {
                                     searchUsers()
@@ -91,26 +86,25 @@ struct FriendsView: View {
                         VStack(spacing: 20) {
                             ProgressView()
                                 .scaleEffect(1.5)
-                                .tint(.white)
+                                .tint(.yellow)
                             Text("Aranıyor...")
-                                .font(.headline)
-                                .foregroundColor(.white.opacity(0.8))
+                                .font(.system(size: 16, weight: .medium, design: .rounded))
+                                .foregroundColor(.yellow.opacity(0.8))
                         }
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     } else if searchResults.isEmpty && !searchText.isEmpty {
                         VStack(spacing: 20) {
                             Image(systemName: "person.fill.questionmark")
                                 .font(.system(size: 50))
-                                .foregroundColor(.white.opacity(0.6))
+                                .foregroundColor(.green.opacity(0.6))
                             
                             Text("Kullanıcı bulunamadı")
-                                .font(.title3)
-                                .fontWeight(.semibold)
-                                .foregroundColor(.white)
+                                .font(.system(size: 20, weight: .heavy, design: .rounded))
+                                .foregroundColor(.yellow)
                             
                             Text("'\(searchText)' ile eşleşen kullanıcı bulunamadı")
-                                .font(.subheadline)
-                                .foregroundColor(.white.opacity(0.7))
+                                .font(.system(size: 14, weight: .medium, design: .rounded))
+                                .foregroundColor(.yellow.opacity(0.8))
                                 .multilineTextAlignment(.center)
                         }
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -119,17 +113,16 @@ struct FriendsView: View {
                         VStack(spacing: 25) {
                             Image(systemName: "person.2.badge.plus")
                                 .font(.system(size: 60))
-                                .foregroundColor(.white.opacity(0.6))
+                                .foregroundColor(.green.opacity(0.6))
                             
                             VStack(spacing: 10) {
                                 Text("Arkadaş Keşfet")
-                                    .font(.title2)
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.white)
+                                    .font(.system(size: 22, weight: .heavy, design: .rounded))
+                                    .foregroundColor(.yellow)
                                 
                                 Text("Kullanıcı adı ile arkadaşlarını bul\nve birlikte çark çevirin!")
-                                    .font(.body)
-                                    .foregroundColor(.white.opacity(0.8))
+                                    .font(.system(size: 14, weight: .medium, design: .rounded))
+                                    .foregroundColor(.yellow.opacity(0.85))
                                     .multilineTextAlignment(.center)
                                     .lineSpacing(4)
                             }
@@ -188,21 +181,21 @@ struct UserCard: View {
                 ZStack {
                     Circle()
                         .fill(LinearGradient(
-                            gradient: Gradient(colors: [.blue.opacity(0.3), .purple.opacity(0.3)]),
+                            gradient: Gradient(colors: [.green.opacity(0.3), .yellow.opacity(0.3)]),
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         ))
                     
                     Image(systemName: "person.fill")
                         .font(.title2)
-                        .foregroundColor(.white.opacity(0.8))
+                        .foregroundColor(.yellow.opacity(0.8))
                 }
             }
             .frame(width: 60, height: 60)
             .clipShape(Circle())
             .overlay(
                 Circle()
-                    .stroke(.white.opacity(0.3), lineWidth: 2)
+                    .stroke(Color.yellow.opacity(0.3), lineWidth: 2)
             )
             
             // Kullanıcı bilgileri
@@ -239,20 +232,22 @@ struct UserCard: View {
                 HStack(spacing: 8) {
                     Image(systemName: isInviteSent ? "checkmark.circle.fill" : "paperplane.fill")
                         .font(.system(size: 16))
-                    
+
                     Text(isInviteSent ? "Gönderildi" : "Çark İsteği")
-                        .font(.system(size: 14, weight: .semibold))
+                        .font(.system(size: 14, weight: .bold, design: .rounded))
                 }
-                .foregroundColor(isInviteSent ? .white : .white)
+                .foregroundColor(.yellow)
                 .padding(.horizontal, 16)
                 .padding(.vertical, 10)
                 .background(
-                    isInviteSent ? 
-                    LinearGradient(gradient: Gradient(colors: [.green, .green.opacity(0.8)]), startPoint: .leading, endPoint: .trailing) :
-                    LinearGradient(gradient: Gradient(colors: [.blue, .purple]), startPoint: .leading, endPoint: .trailing)
+                    LinearGradient(
+                        colors: isInviteSent ? [Color.green, Color.green.opacity(0.8)] : [Color.green, Color.yellow],
+                        startPoint: .leading,
+                        endPoint: .trailing
+                    )
                 )
                 .clipShape(Capsule())
-                .shadow(color: isInviteSent ? .green.opacity(0.3) : .blue.opacity(0.3), radius: 8, x: 0, y: 4)
+                .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2)
             }
             .disabled(isInviteSent)
             .scaleEffect(isInviteSent ? 0.95 : 1.0)
@@ -262,7 +257,7 @@ struct UserCard: View {
         .background(.ultraThickMaterial, in: RoundedRectangle(cornerRadius: 20))
         .overlay(
             RoundedRectangle(cornerRadius: 20)
-                .stroke(.white.opacity(0.2), lineWidth: 1)
+                .stroke(Color.yellow.opacity(0.2), lineWidth: 1)
         )
         .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 5)
     }
