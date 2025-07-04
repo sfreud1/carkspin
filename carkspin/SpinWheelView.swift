@@ -20,9 +20,9 @@ struct SpinWheelView: View {
                 // Premium gradient arka plan
                 RadialGradient(
                     gradient: Gradient(colors: [
-                        Color(red: 0.1, green: 0.1, blue: 0.2),
-                        Color(red: 0.2, green: 0.1, blue: 0.3),
-                        Color(red: 0.1, green: 0.0, blue: 0.2)
+                        Color.indigo.opacity(0.8),
+                        Color.teal.opacity(0.8),
+                        Color.black
                     ]),
                     center: .center,
                     startRadius: 100,
@@ -51,7 +51,7 @@ struct SpinWheelView: View {
                                 .font(.system(size: 28, weight: .black, design: .rounded))
                                 .foregroundStyle(
                                     LinearGradient(
-                                        colors: [.white, .blue.opacity(0.8)],
+                                        colors: [.white, Color.pink.opacity(0.8)],
                                         startPoint: .topLeading,
                                         endPoint: .bottomTrailing
                                     )
@@ -73,7 +73,7 @@ struct SpinWheelView: View {
                                         Circle()
                                             .stroke(
                                                 LinearGradient(
-                                                    colors: [.blue.opacity(0.5), .purple.opacity(0.5)],
+                                                    colors: [Color.pink.opacity(0.5), Color.orange.opacity(0.5)],
                                                     startPoint: .topLeading,
                                                     endPoint: .bottomTrailing
                                                 ),
@@ -98,7 +98,7 @@ struct SpinWheelView: View {
                         Circle()
                             .fill(
                                 RadialGradient(
-                                    colors: [.blue.opacity(0.3), .purple.opacity(0.2), .clear],
+                                    colors: [Color.pink.opacity(0.3), Color.orange.opacity(0.2), .clear],
                                     center: .center,
                                     startRadius: 50,
                                     endRadius: 200
@@ -115,7 +115,7 @@ struct SpinWheelView: View {
                             Circle()
                                 .stroke(
                                     LinearGradient(
-                                        colors: [.white.opacity(0.8), .blue.opacity(0.6)],
+                                        colors: [.white.opacity(0.8), Color.pink.opacity(0.6)],
                                         startPoint: .topLeading,
                                         endPoint: .bottomTrailing
                                     ),
@@ -201,9 +201,9 @@ struct SpinWheelView: View {
                                 RoundedRectangle(cornerRadius: 30)
                                     .fill(
                                         LinearGradient(
-                                            colors: isSpinning ? 
+                                            colors: isSpinning ?
                                                 [.gray.opacity(0.4), .gray.opacity(0.6)] :
-                                                [.orange.opacity(0.8), .red.opacity(0.9)],
+                                                [Color.pink.opacity(0.8), Color.orange.opacity(0.9)],
                                             startPoint: .topLeading,
                                             endPoint: .bottomTrailing
                                         )
@@ -216,9 +216,9 @@ struct SpinWheelView: View {
                                 RoundedRectangle(cornerRadius: 30)
                                     .fill(
                                         LinearGradient(
-                                            colors: isSpinning ? 
+                                            colors: isSpinning ?
                                                 [.gray.opacity(0.6), .gray.opacity(0.8)] :
-                                                [.orange, .red],
+                                                [Color.pink, Color.orange],
                                             startPoint: .topLeading,
                                             endPoint: .bottomTrailing
                                         )
@@ -478,7 +478,7 @@ struct ResultView: View {
                         .frame(width: 150, height: 55)
                         .background(
                             LinearGradient(
-                                colors: [.blue, .purple],
+                                colors: [Color.pink, Color.orange],
                                 startPoint: .leading,
                                 endPoint: .trailing
                             )
@@ -488,7 +488,7 @@ struct ResultView: View {
                             RoundedRectangle(cornerRadius: 27)
                                 .stroke(.white.opacity(0.3), lineWidth: 1)
                         )
-                        .shadow(color: .blue.opacity(0.3), radius: 15, x: 0, y: 8)
+                        .shadow(color: Color.pink.opacity(0.3), radius: 15, x: 0, y: 8)
                     }
                 }
                 .transition(.scale.combined(with: .opacity))
